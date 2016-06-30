@@ -1,0 +1,18 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+
+development:
+  <<: *default
+  database: aed_admin_development
+
+test:
+  <<: *default
+  database: aed_admin_test
+
+production:
+  <<: *default
+  database: aed_admin_production
+  username: aed_admin
+  password: <%= ENV['AED_ADMIN_DATABASE_PASSWORD'] %>

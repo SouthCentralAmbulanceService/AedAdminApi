@@ -1,0 +1,21 @@
+<%= semantic_form_for [:admin, @aed] do |f| %>
+  <%= f.inputs 'AED Details' do %>
+    <%= f.input :aed_type, label: 'Type' %>
+    <%= f.input :facility_name %>
+    <%= f.input :address_line_1 %>
+    <%= f.input :address_line_2 %>
+    <%= f.input :post_code %>
+    <%= f.input :ward %>
+    <%= f.input :aed_count %>
+    <%= f.input :aed_location, as: :text %>
+    <%= f.input :latitude, as: :number %>
+    <%= f.input :longitude, as: :number  %>
+    <%= f.input :phone, as: :phone %>
+    <%= f.input :validated?, as: :boolean %>
+  <% end %>
+  <%= f.actions do %>
+    <input type="submit" value="submit" onclick="validate_distance(event)" />
+    <li class='cancel'><%= link_to 'Cancel', admin_aeds_path %></li>
+  <% end %>
+<% end %>
+<%= javascript_include_tag('/assets/custom/location.js') %>
