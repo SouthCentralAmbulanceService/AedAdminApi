@@ -48,7 +48,6 @@ aed_example_values.each_with_index do |data, index|
     aed_location: '1 at Reception 1 at cottages',
     latitude: "51.#{rand(100000..200000).to_s}".to_f,
     longitude: "-1.#{rand(100000..200000).to_s}".to_f,
-    email: "test#{index}@example.com",
     phone: '00000000000'
   )
 end
