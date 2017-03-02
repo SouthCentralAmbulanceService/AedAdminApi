@@ -4,12 +4,12 @@ require 'geokit'
 module Geokit
   module Geocoders
     class CustomGeocoder < Geocoder
+
       config :key
       self.secure = true
 
       private
 
-      # Template method which does the reverse-geocode lookup.
       def self.do_reverse_geocode(latlng, options = {})
         latlng = LatLng.normalize(latlng)
         url =  "#{protocol}://api.mapbox.com/geocoding/v5/mapbox.places/"
@@ -17,7 +17,6 @@ module Geokit
         process :json, url
       end
 
-      # Template method which does the geocode lookup.
       def self.do_geocode(address, options = {})
         address_str = address.is_a?(GeoLoc) ? address.to_geocodeable_s : address
         url =  "#{protocol}://api.mapbox.com/geocoding/v5/mapbox.places/"

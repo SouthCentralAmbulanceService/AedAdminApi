@@ -80,5 +80,33 @@ RSpec.describe Aed, type: :model do
         ]
       )
     end
+
+    it 'should search by location' do
+      @aed.update(validated?: true)
+      @aed.save
+      search = Aed.geo_search(@aed.latitude, @aed.longitude, 5)
+      expect(search[0].post_code).to eq(@aed.post_code)
+    end
+
+    it 'should have admin user association' do
+      adminuser = AdminUser.create!(
+        email: 'testuser@example.com',
+        password: 'thisisapassword'
+      )
+      aed = adminuser.aeds.create!(
+        aed_type: 'GENERAL COMMERCIAL',
+        facility_name: 'PRIORS COURT SCHOOL  HERMITAGE',
+        address_line_1: '12',
+        address_line_2: 'Priors Court Road',
+        post_code: 'RG189NU',
+        ward: 'BERKS',
+        aed_count: 2,
+        aed_location: '1 at Reception 1 at cottages',
+        latitude: '51.459982',
+        longitude: '-1.298559',
+        phone: '00000000000'
+      )
+      expect(aed.admin_user).to eq(adminuser)
+    end
   end
 end

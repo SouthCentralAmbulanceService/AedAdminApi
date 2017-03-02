@@ -1,10 +1,6 @@
 $stdout.sync = true
 # Geo Coder for Lat Long stuff
 class GeoCoderDistance
-  def initialize
-    Geokit::Geocoders::CustomGeocoder.key = ENV['CUSTOM_GEO_KEY']
-  end
-
   def over_max_range?(addr_1, addr_2, post_code, lat, lon)
     return error_response("#{addr_1}, #{addr_2}, #{post_code}") if missing?(
       addr_1, addr_2, post_code, lat, lon
@@ -38,8 +34,7 @@ class GeoCoderDistance
   end
 
   def geocoded(address_string)
-    # Geokit::Geocoders::GoogleGeocoder.geocode(address_string)
-    Geokit::Geocoders::CustomGeocoder.geocode(address_string)
+    Geokit::Geocoders::GoogleGeocoder.geocode(address_string)
   end
 
   def missing?(addr_1, addr_2, post_code, lat, lon)

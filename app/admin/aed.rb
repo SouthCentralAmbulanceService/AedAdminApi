@@ -1,4 +1,10 @@
 ActiveAdmin.register Aed do
+  scope_to :current_admin_user, if: proc { !current_admin_user.super? }
+
+  before_create do |aed|
+    aed.admin_user = current_admin_user
+  end
+
   permit_params do
     [
       :aed_type,
@@ -12,7 +18,8 @@ ActiveAdmin.register Aed do
       :latitude,
       :longitude,
       :phone,
-      :validated?
+      :validated?,
+      :admin_user
     ]
   end
 
@@ -27,6 +34,7 @@ ActiveAdmin.register Aed do
   filter :longitude, label: 'Lon'
   filter :phone
   filter :validated?
+  filter :admin_user, if: proc { current_admin_user.super? }
 
   index do
     selectable_column
@@ -40,12 +48,15 @@ ActiveAdmin.register Aed do
     column :phone
     column :created_at
     column :validated?
+    column :admin_user, if: proc { current_admin_user.super? }
     actions
   end
 
   show do
     attributes_table do
-      row 'Type', :aed_type
+      row 'Type' do
+        aed.aed_type
+      end
       row :facility_name
       row :address_line_1
       row :address_line_2
@@ -63,6 +74,7 @@ ActiveAdmin.register Aed do
       row :phone
       row :created_at
       row :validated?
+      row :admin_user, if: proc { current_admin_user.super? }
       active_admin_comments
     end
   end

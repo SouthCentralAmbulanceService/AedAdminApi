@@ -14,13 +14,12 @@ Admin panel for the input of AED data and API for native client
   - `bundle exec rake db:create`
   - `bundle exec rake db:migrate`
   - `bundle exec rake db:seed`
+  - `rails g geokit_rails:install`
   - `rails s`
 
-***Note***: Using ENV['CUSTOM_GEO_KEY'] in order to use Mapbox APIs
+***Note***: Using ENV['GOOGLE_MAPS_API'] in order to use geocoding googlemaps APIs
 
-***Note***: Using [memcachier](https://www.memcachier.com/) in order to use cache on API
-
-Admin creds to be defined in the ENV variables for production:
+Admin creds can be defined in the ENV variables for production:
 
   - ENV['ADMIN_USER']
   - ENV['ADMIN_PASS']
