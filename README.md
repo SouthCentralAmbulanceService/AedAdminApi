@@ -8,7 +8,7 @@ Admin panel for the input of AED data and API for native client
 
   - Ruby 2.2.3
   - Rails 4.2.5.1
-  - Using [GeoKit](https://github.com/geokit/geokit) in order to validate Lat/Lon with Address fields
+  - Using [Google Maps Geocoding API](https://developers.google.com/maps/documentation/geocoding/intro) in order to validate Lat/Lon with Address fields
   - Clone repo
   - `bundle install`
   - `bundle exec rake db:create`
